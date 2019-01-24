@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CURD</title>
+    <script src="../libs/angular.min.js"></script>
+    <script>
+        const app=angular.module("myapp",[]);
+        app.controller("myctrl",($scope,myfactory)=>{
+            console.log("controller entering");
+            $scope.item={};
+            $scope.add=()=>{
+                console.log("add called");
+            $scope.submitForm=(isValid)=>{
+                if(isValid){
+                    console.log("item valid",$scope.item);
+                    myfactory.add();
+                }
+                else(
+                    alert("Fill all the data in box")
+                )
+            }
+        }
+        })
+        app.factory("myfactory",($http,$q)=>{
+            console.log("factory enter");
+            const object={
+                add(){
+                    var defer=$q.defer;
+                    const url="http://localhost:1234";
+                    console.log("to server");
+                    $http.post(url).then(data=>{
+                        defer.resolve(data);
+                        console.log("data is",data);
+                    },err=>{
+                        defer.reject(err);
+                    })
+                    return defer.promise;
+                }
+            };
+            return object;
+        })
+    </script>
+</head>
+<body ng-app="myapp">
+
+    <h1>CRUD by MEAN</h1>
+
+    <form  action="addItem" ng-controller="myctrl" name="crud" ng-submit="submitForm(crud.$valid)" method="POST" novalidate>
+        <table>
+            <tr>
+                <td><label for="">Item ID</label></td>  
+                <td><label for="">Name</label></td>
+                <td><label for="">Price</label></td>
+                <td><label for="">Url</label></td>
+            </tr>
+            <tr>
+                <th><input type="number" name="id" ng-model="item.id" required></th>
+                <th><input type="text" name="name" ng-model="item.name" required></th>
+                <th><input type="number" name="price" ng-model="item.price" required></th>
+                <th><input type="text" name="url" ng-model="item.url" required></th>
+            </tr>
+            <tr><td><button ng-click="add()">Add Item</button></td></tr>
+        </table>
+    </form>
+    <!-- <form action="dologin" method="POST" ng-controller="myctrl" ng-click="login()">
+        <table>
+            <tr>
+                <td><label for="">Userid</label></td>
+                <td><input type="text" name="userid" placeholder="Enter Userid"></td>
+            </tr>
+            <tr>
+                <td><label for="">Password</label></td>
+                <td><input type="text" name="pwd" placeholder="Type password here"></td>
+            </tr>
+            <tr>
+                <button>Login</button>
+            </tr>
+        </table>
+    </form> -->
+
+    
+</body>
+</html>

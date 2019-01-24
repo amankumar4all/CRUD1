@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CURD</title>
+  
+</head>
+<body >
+
+    <h1>CRUD by MEAN</h1>
+
+    <form  action="addItem" method="POST">
+        <table>
+            <tr>
+                <td><label for="">Item ID</label></td>  
+                <td><label for="">Name</label></td>
+                <td><label for="">Price</label></td>
+                <td><label for="">Url</label></td>
+            </tr>
+            <tr>
+                <th><input type="number" name="id" required ></th>
+                <th><input type="text" name="name" ng-model="item.name" required></th>
+                <th><input type="number" name="price" ng-model="item.price" required></th>
+                <th><input type="text" name="url" ng-model="item.url" required></th>
+            </tr>
+            <tr><td><button ng-click="add()">Add Item</button></td></tr>
+        </table>
+    </form>
+    <tr><td><button ng-click="fetch()">Show data</button></td></tr>
+
+    <!-- <form action="dologin" method="POST" ng-controller="myctrl" ng-click="login()">
+        <table>
+            <tr>
+                <td><label for="">Userid</label></td>
+                <td><input type="text" name="userid" placeholder="Enter Userid"></td>
+            </tr>
+            <tr>
+                <td><label for="">Password</label></td>
+                <td><input type="text" name="pwd" placeholder="Type password here"></td>
+            </tr>
+            <tr>
+                <button>Login</button>
+            </tr>
+        </table>
+    </form> -->
+
+    
+</body>
+</html>
